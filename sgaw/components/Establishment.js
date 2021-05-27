@@ -5,7 +5,7 @@ const Establishment = () => {
     return (
         <>
         <h1>HOLA SOY CLAUDiO y estoy con LAURA</h1>
-        <h2>PRUEBA</h2>
+        <h2>PRUEBA DE GIT</h2>
             <Table borderless>
                 <thead>
                     <tr>
