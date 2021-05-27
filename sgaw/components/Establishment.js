@@ -6,6 +6,7 @@ const Establishment = () => {
         <>
         <h1>HOLA SOY CLAUDiO y estoy con LAURA</h1>
         <h2>PRUEBA DE GIT</h2>
+        <h4>HASTA MAÑANA</h4>
             <Table borderless>
                 <thead>
                     <tr>
