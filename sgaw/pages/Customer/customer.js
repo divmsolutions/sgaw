@@ -1,5 +1,5 @@
 import bootstrap from 'bootstrap/dist/css/bootstrap.css'
-import { Form, Label, FormGroup, Input, Button, Row, Col } from 'reactstrap'
+import { Select, Form, Label, FormGroup, Input, Button, Row, Col } from 'reactstrap'
 import Establishment from '../../components/Establishment'
 
 const Customer = () => {
@@ -11,6 +11,20 @@ const Customer = () => {
         <Row>
           <Col>
             <FormGroup>
+              <Label>Categoria:</Label>
+              <Input type="select" name="select">
+
+                <option value="0">Lacteas</option>
+                <option value="1">No Lacteas</option>
+                <option value="2" selected>Alimentos</option>
+              </Input>
+
+<select name="select">
+  <option value="value1">Value 1</option>
+  <option value="value2" selected>Value 2</option>
+  <option value="value3">Value 3</option>
+</select>
+
               <Label>Razón Social:</Label>
               <Input type="text" name="nombre_cliente"></Input>
               <Label>Cuit:</Label>
@@ -24,16 +38,7 @@ const Customer = () => {
             </FormGroup>
           </Col>
           <Col xs="6">
-            <FormGroup>
-              <Label>Establecimiento:</Label>
-              <Input type="text" name="nombre_establecimiento"></Input>
-              <Label>Cuit Establecimiento:</Label>
-              <Input type="text" name="cuit_establecimiento"></Input>
-              <Label>Dirección Establecimiento:</Label>
-              <Input type="text" name="direccion_establecimiento"></Input>
-              <Establishment/>
-              
-            </FormGroup>
+            <Establishment />
           </Col>
         </Row>
       </Form>
