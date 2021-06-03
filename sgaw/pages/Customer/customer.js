@@ -1,29 +1,50 @@
-import bootstrap from 'bootstrap/dist/css/bootstrap.css'
-import { Select, Form, Label, FormGroup, Input, Button, Row, Col } from 'reactstrap'
-import Establishment from '../../components/Establishment'
+import { Form, Label, FormGroup, Input, Row, Col, Button } from 'reactstrap'
 
-const Customer = () => {
+// import { } from 'react-bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import Establishment from '../../components/Establishment/establishment'
+
+import { useState } from 'react'
+
+const Customer = (props) => {
+
+  const initialValuesEstablishment = {
+    nombreEstablecimiento: ""
+    //cuitEstablecimiento: "",
+    //direccionEstablecimiento: "",
+  }
+
+  const [values, setValues] = useState("");
+
+  /* va tomando la entrada de teclado de los inputs del Formulario */
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    console.log(name, value)
+    setValues({ ...values, [name]: value })
+    console.log('setValues:', values)
+  }
+  /* ----------------------------- */
+
+  const handleSubmit = (values) => {
+    // e.preventDefault(); /* para cancelar un evento sin tener el funcionamiento del evento, es decir, puede ser llamado nuevamente */
+    // alert(e.nombreEstablecimiento)
+    // setValues({ ...initialValuesEstablishment })
+  }
 
   return (
     <div>
-      <h2>CLIENTES</h2>
+      <h2>REGISTRAR CLIENTES</h2>
       <Form>
         <Row>
           <Col>
             <FormGroup>
               <Label>Categoria:</Label>
               <Input type="select" name="select">
-
-                <option value="0">Lacteas</option>
+                {/* <option value="0">Lacteas</option>
                 <option value="1">No Lacteas</option>
-                <option value="2" selected>Alimentos</option>
+                <option value="2" selected>Alimentos</option> */}
               </Input>
-
-<select name="select">
-  <option value="value1">Value 1</option>
-  <option value="value2" selected>Value 2</option>
-  <option value="value3">Value 3</option>
-</select>
 
               <Label>Razón Social:</Label>
               <Input type="text" name="nombre_cliente"></Input>
@@ -38,7 +59,21 @@ const Customer = () => {
             </FormGroup>
           </Col>
           <Col xs="6">
-            <Establishment />
+
+            <FormGroup>
+              <Label>Nombre:</Label>
+              <Input type="text" name="nombreEstablecimiento" onChange={handleInputChange}></Input>
+              <Label>Cuit:</Label>
+              <Input type="text" name="cuitEstablecimiento" onChange={handleInputChange}></Input>
+              <Label>Dirección:</Label>
+              <Input type="text" name="direccionEstablecimiento" onChange={handleInputChange}></Input>
+              {/* <Button onClick={() => setInsert(establishment.id)} >Agregar</Button> */}
+
+              {/* <Impresoras {...{addOrEditImpresoras, currentId, impresoras }} /> */}
+              <Establishment {...values} />
+              {/* <button onClick={props.handleSubmit}>Agregar</button> */}
+            </FormGroup>
+
           </Col>
         </Row>
       </Form>

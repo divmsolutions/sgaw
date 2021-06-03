@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 const GenericComponent = () => {
 
-const [establishment, setEstablishment] = useState(false)
+const [establishment, setEstablishment] = useState("")
 
   return (
     <>

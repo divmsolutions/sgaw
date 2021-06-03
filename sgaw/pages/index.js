@@ -2,6 +2,8 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Customer from '../pages/Customer/customer'
+import Establishment from '../components/Establishment/establishment'
+
 
 export default function Home() {
   return (
