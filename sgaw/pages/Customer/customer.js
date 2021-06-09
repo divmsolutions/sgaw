@@ -1,82 +1,71 @@
-import { Form, Label, FormGroup, Input, Row, Col, Button } from 'reactstrap'
-
+import { Form, Label, FormGroup, Input, Row, Col, Table, Button } from 'reactstrap'
 // import { } from 'react-bootstrap'
+import Establishment from '../Establishment/establishment'
+import styles from '../../styles/Home.module.css'
+
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-import Establishment from '../../components/Establishment/establishment'
-
-import { useState } from 'react'
+import { useState, useEffect } from 'react';
+import Link from 'next/link'
 
 const Customer = (props) => {
-
-  const initialValuesEstablishment = {
-    nombreEstablecimiento: ""
-    //cuitEstablecimiento: "",
-    //direccionEstablecimiento: "",
+  const initialValues = {
+    nombreEstablecimiento: "",
+    cuitEstablecimiento: "",
+    direccionEstablecimiento: ""
   }
 
-  const [values, setValues] = useState("");
+  const [values, setValues] = useState(initialValues);
 
-  /* va tomando la entrada de teclado de los inputs del Formulario */
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    console.log(name, value)
     setValues({ ...values, [name]: value })
-    console.log('setValues:', values)
   }
-  /* ----------------------------- */
 
-  const handleSubmit = (values) => {
-    // e.preventDefault(); /* para cancelar un evento sin tener el funcionamiento del evento, es decir, puede ser llamado nuevamente */
-    // alert(e.nombreEstablecimiento)
-    // setValues({ ...initialValuesEstablishment })
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("values", values);
+    props.addOrEditCustomer(values);
+
+    setValues({ ...initialValues })
   }
 
   return (
     <div>
-      <h2>REGISTRAR CLIENTES</h2>
-      <Form>
-        <Row>
-          <Col>
-            <FormGroup>
-              <Label>Categoria:</Label>
-              <Input type="select" name="select">
-                {/* <option value="0">Lacteas</option>
-                <option value="1">No Lacteas</option>
-                <option value="2" selected>Alimentos</option> */}
-              </Input>
 
-              <Label>Razón Social:</Label>
-              <Input type="text" name="nombre_cliente"></Input>
-              <Label>Cuit:</Label>
-              <Input type="text" name="cuit_cliente"></Input>
-              <Label>Dirección:</Label>
-              <Input type="text" name="direccion_cliente"></Input>
-              <Label>Teléfono:</Label>
-              <Input type="text" name="telefono_cliente"></Input>
-              <Label>Responsable:</Label>
-              <Input type="text" name="responsable_cliente"></Input>
-            </FormGroup>
-          </Col>
-          <Col xs="6">
+      <header>
+        <h1 className={styles.title}>
+          Registrar <a href="https://nextjs.org">CLIENTE</a>
+        </h1>
+      </header>
 
-            <FormGroup>
-              <Label>Nombre:</Label>
-              <Input type="text" name="nombreEstablecimiento" onChange={handleInputChange}></Input>
-              <Label>Cuit:</Label>
-              <Input type="text" name="cuitEstablecimiento" onChange={handleInputChange}></Input>
-              <Label>Dirección:</Label>
-              <Input type="text" name="direccionEstablecimiento" onChange={handleInputChange}></Input>
-              {/* <Button onClick={() => setInsert(establishment.id)} >Agregar</Button> */}
+      <main  className={styles.card}>
+        <Form>
+          <Row>
+            <Col>
+              <FormGroup>
+                <Label>Categoria:</Label>
+                <Input type="select" name="select"></Input>
+                <Label>Razón Social:</Label>
+                <Input type="text" name="nombre_cliente"></Input>
+                <Label>Cuit:</Label>
+                <Input type="text" name="cuit_cliente"></Input>
+                <Label>Dirección:</Label>
+                <Input type="text" name="direccion_cliente"></Input>
+                <Label>Teléfono:</Label>
+                <Input type="text" name="telefono_cliente"></Input>
+                <Label>Responsable:</Label>
+                <Input type="text" name="responsable_cliente"></Input>
+              </FormGroup>
+            </Col>
+            <Col xs="6">
+              <Link href="/Establishment/establishment">
+                <a>Establecimientos</a>
+              </Link>
 
-              {/* <Impresoras {...{addOrEditImpresoras, currentId, impresoras }} /> */}
-              <Establishment {...values} />
-              {/* <button onClick={props.handleSubmit}>Agregar</button> */}
-            </FormGroup>
-
-          </Col>
-        </Row>
-      </Form>
+            </Col>
+          </Row>
+        </Form>
+      </main>
     </div>
   );
 }
